@@ -324,7 +324,9 @@ extern int	machine_at_d824_init(const machine_t *);
 extern int	machine_at_pcs46c_init(const machine_t *);
 
 extern int	machine_at_403tg_init(const machine_t *);
+#if defined(DEV_BRANCH) && defined(USE_OPTI822)  
 extern int	machine_at_pc330_6573_init(const machine_t *);
+#endif
 extern int	machine_at_mvi486_init(const machine_t *);
 
 extern int	machine_at_sis401_init(const machine_t *);
@@ -384,10 +386,12 @@ extern const device_t 	*at_cpqiii_get_device(void);
 /* m_at_socket4_5.c */
 extern int	machine_at_excalibur_init(const machine_t *);
 
-extern int  machine_at_pat54pv_init(const machine_t *);
+extern int	machine_at_pat54pv_init(const machine_t *);
 
+#if defined(DEV_BRANCH) && defined(USE_OPTI822)  
 extern int	machine_at_hot543_init(const machine_t *);
 extern int	machine_at_p54vl_init(const machine_t *);
+#endif
 
 extern int	machine_at_batman_init(const machine_t *);
 extern int	machine_at_ambradp60_init(const machine_t *);

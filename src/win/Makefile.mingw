@@ -48,6 +48,7 @@ ifeq ($(DEV_BUILD), y)
  ifndef I450KX
   I450KX		:= y
  endif
+ 
  ifndef M154X
   M154X		:= y
  endif
@@ -66,6 +67,9 @@ ifeq ($(DEV_BUILD), y)
  ifndef OPENGL
   OPENGL	:= y
  endif
+ ifndef OPTI822
+  OPTI822	:= y
+ endif 
  ifndef PAS16
   PAS16		:= n
  endif
@@ -139,6 +143,9 @@ else
  ifndef OPENGL
   OPENGL	:= n
  endif
+ ifndef OPTI822
+  OPTI822	:= n
+ endif  
  ifndef PAS16
   PAS16		:= n
  endif
@@ -539,6 +546,11 @@ RFLAGS		+= -DUSE_OPENGL
 DEVBROBJ	+= win_opengl.o win_opengl_glslp.o glad.o
 endif
 
+ifeq ($(OPTI822), y)
+OPTS		+= -DUSE_OPTI822
+DEVBROBJ	+= opti822.o
+endif
+
 ifeq ($(PAS16), y)
 OPTS		+= -DUSE_PAS16
 DEVBROBJ	+= snd_pas16.o
@@ -612,7 +624,7 @@ CPUOBJ		:= cpu.o cpu_table.o fpu.o x86.o \
 
 CHIPSETOBJ	:= acc2168.o cs8230.o ali1217.o ali1429.o ali1489.o et6000.o headland.o intel_82335.o cs4031.o \
 		    intel_420ex.o intel_4x0.o intel_sio.o intel_piix.o ioapic.o \
-		    neat.o opti495.o opti822.o opti895.o opti5x7.o scamp.o scat.o via_vt82c49x.o via_vt82c505.o \
+		    neat.o opti495.o opti895.o opti5x7.o scamp.o scat.o via_vt82c49x.o via_vt82c505.o \
 		    gc100.o \
 		    sis_85c310.o sis_85c4xx.o sis_85c496.o sis_85c50x.o sis_5511.o sis_5571.o sis_5598.o stpc.o opti283.o opti291.o \
 		    umc_8886.o umc_8890.o umc_hb4.o \

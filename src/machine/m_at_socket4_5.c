@@ -83,6 +83,7 @@ machine_at_pat54pv_init(const machine_t *model)
 
     return ret;
 }
+#if defined(DEV_BRANCH) && defined(USE_OPTI822)  
 int
 machine_at_hot543_init(const machine_t *model)
 {
@@ -138,7 +139,7 @@ machine_at_p54vl_init(const machine_t *model)
 
     return ret;
 }
-
+#endif
 static void
 machine_at_premiere_common_init(const machine_t *model, int pci_switch)
 {

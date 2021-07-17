@@ -592,7 +592,7 @@ machine_at_403tg_init(const machine_t *model)
     return ret;
 }
 
-
+#if defined(DEV_BRANCH) && defined(USE_OPTI822)  
 int
 machine_at_pc330_6573_init(const machine_t *model)	// doesn't like every CPU other than the iDX4 and the Intel OverDrive, hangs without a PS/2 mouse
 {
@@ -619,7 +619,7 @@ machine_at_pc330_6573_init(const machine_t *model)	// doesn't like every CPU oth
 
     return ret;
 }
-
+#endif
 
 int
 machine_at_mvi486_init(const machine_t *model)
