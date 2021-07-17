@@ -562,11 +562,14 @@ machine_at_cmdsl386sx16_init(const machine_t *model)
 
 
 static void
-machine_at_scamp_common_init(const machine_t *model)
+machine_at_scamp_common_init(int is_ps2, const machine_t *model)
 {
     machine_at_common_ide_init(model);
 
-    device_add(&keyboard_ps2_ami_device);
+    if(is_ps2)
+    	device_add(&keyboard_ps2_ami_device);
+    else
+    	device_add(&keyboard_at_ami_device);
 
     if (fdc_type == FDC_INTERNAL)
     device_add(&fdc_at_device);
@@ -593,7 +596,7 @@ machine_at_cmdsl386sx25_init(const machine_t *model)
     if (bios_only || !ret)
 	return ret;
 
-    machine_at_scamp_common_init(model);
+    machine_at_scamp_common_init(1, model);
 
     if (gfxcard == VID_INTERNAL)
 	device_add(&gd5402_onboard_device);
@@ -601,13 +604,27 @@ machine_at_cmdsl386sx25_init(const machine_t *model)
     return ret;
 }
 
+int
+machine_at_dataexpert386sx_init(const machine_t *model)
+{
+    int ret;
+
+    ret = bios_load_linear("roms/machines/dataexpert386sx/5e9f20e5ef967717086346.BIN",
+			   0x000f0000, 65536, 0);
+
+    if (bios_only || !ret)
+	return ret;
+
+    machine_at_scamp_common_init(0, model);
+
+    return ret;
+}
 
 const device_t *
 at_spc6033p_get_device(void)
 {
     return &ati28800k_spc6033p_device;
 }
-
 
 int
 machine_at_spc6033p_init(const machine_t *model)
@@ -620,7 +637,7 @@ machine_at_spc6033p_init(const machine_t *model)
     if (bios_only || !ret)
 	return ret;
 
-    machine_at_scamp_common_init(model);
+    machine_at_scamp_common_init(1, model);
 
     if (gfxcard == VID_INTERNAL)
 	device_add(&ati28800k_spc6033p_device);

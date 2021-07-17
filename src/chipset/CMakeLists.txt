@@ -17,7 +17,7 @@ add_library(chipset OBJECT acc2168.c cs8230.c ali1217.c ali1429.c ali1489.c et60
 	intel_82335.c cs4031.c intel_420ex.c intel_4x0.c intel_sio.c intel_piix.c ../ioapic.c
 	neat.c opti283.c opti291.c opti495.c opti822.c opti895.c opti5x7.c scamp.c scat.c
 	sis_85c310.c sis_85c4xx.c sis_85c496.c sis_85c50x.c sis_5511.c sis_5571.c sis_5598.c
-	umc_8886.c umc_8890.c umc_hb4.c
+	umc_8886.c umc_hb4.c
 	via_vt82c49x.c via_vt82c505.c sis_85c310.c sis_85c4xx.c sis_85c496.c sis_85c50x.c
 	gc100.c stpc.c 
 	via_apollo.c via_pipc.c wd76c10.c

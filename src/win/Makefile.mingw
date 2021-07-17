@@ -615,7 +615,7 @@ CHIPSETOBJ	:= acc2168.o cs8230.o ali1217.o ali1429.o ali1489.o et6000.o headland
 		    neat.o opti495.o opti822.o opti895.o opti5x7.o scamp.o scat.o via_vt82c49x.o via_vt82c505.o \
 		    gc100.o \
 		    sis_85c310.o sis_85c4xx.o sis_85c496.o sis_85c50x.o sis_5511.o sis_5571.o sis_5598.o stpc.o opti283.o opti291.o \
-		    umc_8886.o umc_8890.o umc_hb4.o \
+		    umc_8886.o umc_hb4.o \
 		    via_apollo.o via_pipc.o wd76c10.o vl82c480.o
 
 MCHOBJ		:= machine.o machine_table.o \

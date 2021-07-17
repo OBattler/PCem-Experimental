@@ -305,7 +305,6 @@ enum SMMRAM_Fields_AMD_K {
     SMRAM_FIELD_AMD_K_LAST
 };
 
-
 #ifdef ENABLE_386_COMMON_LOG
 int x386_common_do_log = ENABLE_386_COMMON_LOG;
 
@@ -402,7 +401,7 @@ smram_save_state_p5(uint32_t *saved_state, int in_hlt)
     int n = 0;
 
     saved_state[SMRAM_FIELD_P5_SMM_REVISION_ID] = SMM_REVISION_ID;
-    saved_state[SMRAM_FIELD_P5_SMBASE_OFFSET] = smbase;
+    saved_state[SMRAM_FIELD_P5_SMBASE_OFFSET] = smbase & 0x00ffffff;
 
     for (n = 0; n < 8; n++)
 	saved_state[SMRAM_FIELD_P5_EAX - n] = cpu_state.regs[n].l;
@@ -592,7 +591,7 @@ smram_restore_state_p5(uint32_t *saved_state)
     smm_seg_load(&cpu_state.seg_gs);
 
     if (SMM_REVISION_ID & SMM_SMBASE_RELOCATION)
-	smbase = saved_state[SMRAM_FIELD_P5_SMBASE_OFFSET];
+	smbase = saved_state[SMRAM_FIELD_P5_SMBASE_OFFSET] & 0x00ffffff;
 
     /* Am486/5x86 stuff */
     if (!is_pentium) {
@@ -1248,7 +1247,7 @@ leave_smm(void)
 	flushmmucache();
     }
 
-    x386_common_log("New SMBASE: %08X (%08X)\n", saved_state[SMRAM_FIELD_P5_SMBASE_OFFSET], saved_state[66]);
+    x386_common_log("New SMBASE: %08X (%08X)\n", saved_state[SMRAM_FIELD_P5_SMBASE_OFFSET] & 0x00ffffff, saved_state[66]);
     if (is_cxsmm)			/* Cx6x86 */
 	smram_restore_state_cyrix(saved_state);
     else if (is_pentium || is_am486)	/* Am486 / 5x86 / Intel P5 (Pentium) */
